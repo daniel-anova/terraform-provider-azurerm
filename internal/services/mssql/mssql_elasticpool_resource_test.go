@@ -64,6 +64,9 @@ func TestAccMsSqlElasticPool_premiumDTUZoneRedundant(t *testing.T) {
 	data := acceptance.BuildTestData(t, "azurerm_mssql_elasticpool", "test")
 	r := MsSqlElasticPoolResource{}
 
+	// Limited regional availability for ZRS
+	data.Locations.Primary = "westeurope"
+
 	data.ResourceTest(t, r, []acceptance.TestStep{
 		{
 			Config: r.premiumDTUZoneRedundant(data),
@@ -170,6 +173,9 @@ func TestAccMsSqlElasticPool_dcFamilyVCore(t *testing.T) {
 	data := acceptance.BuildTestData(t, "azurerm_mssql_elasticpool", "test")
 	r := MsSqlElasticPoolResource{}
 
+	// Limited regional availability for DC-series
+	data.Locations.Primary = "westeurope"
+
 	data.ResourceTest(t, r, []acceptance.TestStep{
 		{
 			Config: r.dcVCore(data),
@@ -184,6 +190,9 @@ func TestAccMsSqlElasticPool_dcFamilyVCore(t *testing.T) {
 func TestAccMsSqlElasticPool_dcFamilyBcTierVCore(t *testing.T) {
 	data := acceptance.BuildTestData(t, "azurerm_mssql_elasticpool", "test")
 	r := MsSqlElasticPoolResource{}
+
+	// Limited regional availability for DC-series
+	data.Locations.Primary = "westeurope"
 
 	data.ResourceTest(t, r, []acceptance.TestStep{
 		{
