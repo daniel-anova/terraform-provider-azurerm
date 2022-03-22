@@ -158,6 +158,9 @@ func TestAccMsSqlElasticPool_fsv2FamilyVCore(t *testing.T) {
 	data := acceptance.BuildTestData(t, "azurerm_mssql_elasticpool", "test")
 	r := MsSqlElasticPoolResource{}
 
+	// Limited regional availability for Fsv2 family
+	data.Locations.Primary = "westeurope"
+
 	data.ResourceTest(t, r, []acceptance.TestStep{
 		{
 			Config: r.fsv2VCore(data),
