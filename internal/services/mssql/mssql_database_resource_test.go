@@ -244,7 +244,7 @@ func TestAccMsSqlDatabase_createPITRMode(t *testing.T) {
 
 		{
 			PreConfig: func() { time.Sleep(11 * time.Minute) },
-			Config:    r.createPITRMode(data, time.Now().Add(time.Duration(3)*time.Minute).UTC().Format(time.RFC3339)),
+			Config:    r.createPITRMode(data, time.Now().Add(time.Duration(9)*time.Minute).UTC().Format(time.RFC3339)),
 			Check: acceptance.ComposeTestCheckFunc(
 				check.That("azurerm_mssql_database.pitr").ExistsInAzure(r),
 			),
