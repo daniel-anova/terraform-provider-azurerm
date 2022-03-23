@@ -69,11 +69,6 @@ func resourceMsSqlDatabase() *pluginsdk.Resource {
 					return fmt.Errorf("transparent data encryption can only be disabled on Data Warehouse SKUs")
 				}
 
-				createMode := d.Get("create_mode").(string)
-				if (createMode == string(sql.CreateModeSecondary) || createMode == string(sql.CreateModeOnlineSecondary)) && transparentDataEncryption {
-					return fmt.Errorf("transparent data encryption must be disabled for secondary databases")
-				}
-
 				return nil
 			}),
 	}
@@ -334,7 +329,8 @@ func resourceMsSqlDatabaseCreateUpdate(d *pluginsdk.ResourceData, meta interface
 		return fmt.Errorf("waiting for create/update of %s: %+v", id, err)
 	}
 
-	if features.ThreePointOhBeta() {
+	// Cannot set transparent data encryption for secondary databases
+	if createMode != string(sql.CreateModeOnlineSecondary) && createMode != string(sql.CreateModeSecondary) {
 		statusProperty := sql.TransparentDataEncryptionStatusDisabled
 		encryptionStatus := d.Get("transparent_data_encryption_enabled").(bool)
 		if encryptionStatus {
