@@ -325,7 +325,7 @@ resource "azurerm_resource_group" "test" {
   location = "%[2]s"
 }
 
-resource "azurerm_sql_server" "test" {
+resource "azurerm_mssql_server" "test" {
   name                         = "acctest%[1]d"
   resource_group_name          = azurerm_resource_group.test.name
   location                     = azurerm_resource_group.test.location
@@ -338,7 +338,7 @@ resource "azurerm_mssql_elasticpool" "test" {
   name                = "acctest-pool-dtu-%[1]d"
   resource_group_name = azurerm_resource_group.test.name
   location            = azurerm_resource_group.test.location
-  server_name         = azurerm_sql_server.test.name
+  server_name         = azurerm_mssql_server.test.name
   max_size_gb         = %.7[6]f
   zone_redundant      = %[9]t
 
@@ -367,7 +367,7 @@ resource "azurerm_resource_group" "test" {
   location = "%[2]s"
 }
 
-resource "azurerm_sql_server" "test" {
+resource "azurerm_mssql_server" "test" {
   name                         = "acctest%[1]d"
   resource_group_name          = azurerm_resource_group.test.name
   location                     = azurerm_resource_group.test.location
@@ -380,7 +380,7 @@ resource "azurerm_mssql_elasticpool" "test" {
   name                = "acctest-pool-vcore-%[1]d"
   resource_group_name = azurerm_resource_group.test.name
   location            = azurerm_resource_group.test.location
-  server_name         = azurerm_sql_server.test.name
+  server_name         = azurerm_mssql_server.test.name
   max_size_gb         = 5
 
   sku {
@@ -409,7 +409,7 @@ resource "azurerm_resource_group" "test" {
   location = "%[2]s"
 }
 
-resource "azurerm_sql_server" "test" {
+resource "azurerm_mssql_server" "test" {
   name                         = "acctest%[1]d"
   resource_group_name          = azurerm_resource_group.test.name
   location                     = azurerm_resource_group.test.location
@@ -422,7 +422,7 @@ resource "azurerm_mssql_elasticpool" "test" {
   name                = "acctest-pool-vcore-%[1]d"
   resource_group_name = azurerm_resource_group.test.name
   location            = azurerm_resource_group.test.location
-  server_name         = azurerm_sql_server.test.name
+  server_name         = azurerm_mssql_server.test.name
   max_size_bytes      = 214748364800
 
   sku {
@@ -451,7 +451,7 @@ resource "azurerm_resource_group" "test" {
   location = "%[2]s"
 }
 
-resource "azurerm_sql_server" "test" {
+resource "azurerm_mssql_server" "test" {
   name                         = "acctest%[1]d"
   resource_group_name          = azurerm_resource_group.test.name
   location                     = azurerm_resource_group.test.location
@@ -464,7 +464,7 @@ resource "azurerm_mssql_elasticpool" "test" {
   name                = "acctest-pool-dtu-%[1]d"
   resource_group_name = azurerm_resource_group.test.name
   location            = azurerm_resource_group.test.location
-  server_name         = azurerm_sql_server.test.name
+  server_name         = azurerm_mssql_server.test.name
   max_size_gb         = 50
   zone_redundant      = false
   license_type        = "%[3]s"
