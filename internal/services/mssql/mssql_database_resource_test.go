@@ -161,6 +161,9 @@ func TestAccMsSqlDatabase_BC(t *testing.T) {
 	data := acceptance.BuildTestData(t, "azurerm_mssql_database", "test")
 	r := MsSqlDatabaseResource{}
 
+	// Limited regional availability for BC
+	data.Locations.Primary = "westeurope"
+
 	data.ResourceTest(t, r, []acceptance.TestStep{
 		{
 			Config: r.bc(data),
